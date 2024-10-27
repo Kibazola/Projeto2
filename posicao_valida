@@ -1,0 +1,33 @@
+def define_posicoes(linha, coluna, orientacao, tamanho):
+    # Aqui vamos criar uma lista vazia para guardar as posições do navio
+    posicoes = []
+    
+    # Se o navio é horizontal, precisamos adicionar colunas
+    if orientacao == 'horizontal':
+        for i in range(tamanho):
+            posicoes.append([linha, coluna + i])  # Adiciona a posição horizontal
+    else:  # Se é vertical, adicionamos linhas
+        for i in range(tamanho):
+            posicoes.append([linha + i, coluna])  # Adiciona a posição vertical
+            
+    return posicoes
+
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    # Primeiro, vamos ver onde o navio vai ficar
+    posicoes_novo_navio = define_posicoes(linha, coluna, orientacao, tamanho)
+
+    # Agora, precisamos checar se todas essas posições são válidas
+    for posicao in posicoes_novo_navio:
+        linha_pos, coluna_pos = posicao
+        
+        # Vamos conferir se a posição está dentro dos limites do tabuleiro
+        if linha_pos < 0 or linha_pos >= 10 or coluna_pos < 0 or coluna_pos >= 10:
+            return False  # Se sair do tabuleiro, não dá pra colocar o navio
+        
+        # Agora vamos ver se já tem um navio nessa posição
+        for navios in frota.values():
+            for navio in navios:
+                if posicao in navio:
+                    return False  # Se já tiver navio aqui, não rola
+
+    return True  # Se tudo estiver ok, pode colocar o navio
