@@ -1,0 +1,12 @@
+def posiciona_frota(frota):
+    # Cria um tabuleiro 10x10, tudo zerado
+    tabuleiro = [[0] * 10 for _ in range(10)]
+    
+    # Percorre cada navio na frota
+    for navios in frota.values():
+        for posicoes in navios:
+            # Para cada posição, coloca 1 no tabuleiro
+            for linha, coluna in posicoes:
+                tabuleiro[linha][coluna] = 1  # Marca onde o navio está
+                
+    return tabuleiro
