@@ -1,0 +1,18 @@
+def afundados(frota, tabuleiro):
+    # Contador para saber quantos navios já foram afundados
+    navios_afundados = 0  
+
+    # Olhando cada tipo de navio na frota
+    for navios in frota.values():
+        for posicoes in navios:
+            # Verifica se todas as partes do navio estão afundadas
+            afundado = True  # Começamos supondo que o navio está afundado
+            for linha, coluna in posicoes:
+                if tabuleiro[linha][coluna] != 'X':  # Se alguma parte não estiver afundada
+                    afundado = False  # O navio não está afundado
+                    break  # Não precisamos continuar verificando
+
+            if afundado:  # Se o navio está afundado
+                navios_afundados += 1  # Aumenta o contador
+
+    return navios_afundados  # Retorna a quantidade total de navios afundados
