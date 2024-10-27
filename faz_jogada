@@ -1,0 +1,8 @@
+def faz_jogada(tabuleiro, linha, coluna):
+    # Se acertou um navio, marca com 'X', senão marca com '-'
+    if tabuleiro[linha][coluna] == 1:
+        tabuleiro[linha][coluna] = 'X'
+    else:
+        tabuleiro[linha][coluna] = '-'
+    
+    return tabuleiro
